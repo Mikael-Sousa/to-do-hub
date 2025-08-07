@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>To Do List</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-image: url("cenario.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                width: 100vw;
+                min-height: 100vh;
+                font-family: "Caprasimo", serif;
+                padding-top: 60px;
+                display: flex;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+                background: transparent;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(3px);
+                z-index: 999;
+            }
+
+            .navbar-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 2rem;
+                max-width: 1600px;
+            }
+
+            .navbar-logo {
+                font-size: 2rem;
+                color: #ffffff;
+                font-weight: 600;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .navbar-container .navbar-menu {
+                display: flex;
+                text-align: center;
+                gap: 1.5rem;
+                list-style: none;
+            }
+
+            .navbar-container .navbar-menu li a {
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 1.3rem;
+                font-weight: 500;
+                padding: 3px 20px;
+                border-radius: 20px;
+                border: 2px solid transparent;
+                transition: all 0.7s ease;
+            }
+            .navbar-toggle {
+                display: none;
+                background: transparent;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+            }
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                background: #ffffff;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .navbar-container .navbar-menu li a:hover,
+            .navbar-container .navbar-menu li a.active {
+                color: #0f191f;
+                background: rgba(0, 0, 0, 0.2);
+                border: 2px solid #ffffff;
+            }
+            .container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 40px 20px;
+            }
+
+            .services {
+                max-width: 1000px;
+                width: 100%;
+                padding: 60px 20px 80px;
+                background-color: rgba(0, 0, 0, 0.2);
+                color: #ffffff;
+                text-align: center;
+                font-family: "Caprasimo", sans-serif;
+                border-radius: 15px;
+            }
+
+            .services h2 {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+                color: #ffffff;
+            }
+
+            .services-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .service-card {
+                background-color: rgba(0, 0, 0, 0.8);
+                padding: 20px;
+                border-radius: 15px;
+                width: 280px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease;
+            }
+
+            .service-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .service-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: #ffffff;
+            }
+
+            .service-card p {
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #ccc;
+            }
+
+            .footer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ccc;
+                text-align: center;
+                padding: 40px 20px;
+                font-family: "Caprasimo", sans-serif;
+                font-size: 0.9rem;
+            }
+
+            .footer a {
+                color: #00ffcc;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .footer a:hover {
+                text-decoration: underline;
+                color: #00ffee;
+            }
+
+            .footer-content p {
+                margin: 10px 0;
+            }
+
+            @media (min-height: 1050px) {
+                footer {
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+
+            @media (max-width: 1056px) {
+                .navbar {
+                    backdrop-filter: none;
+                }
+                .navbar-container .navbar-menu {
+                    display: none;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1.7rem !important;
+                    position: absolute;
+                    height: 100vh;
+                    width: 250px;
+                    top: 0;
+                    right: 0;
+                    padding: 5rem 1.5rem;
+                    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                }
+
+                .navbar-toggle {
+                    display: block;
+                    z-index: 999;
+                }
+                .navbar-container .navbar-menu.active {
+                    display: flex;
+                }
+                .navbar-toggle.active .bar:nth-child(2) {
+                    opacity: 0;
+                }
+                .navbar-toggle.active .bar:nth-child(1) {
+                    transform: translateY(8px) rotate(45deg);
+                }
+
+                .navbar-toggle.active .bar:nth-child(3) {
+                    transform: translateY(-8px) rotate(-45deg);
+                }
+            }
+
+            @media (max-width: 480px) {
+                .navbar-container {
+                    padding: 0.1rem;
+                }
+                .navbar-logo {
+                    font-size: 1.7rem;
+                }
+                .navbar-container .navbar-menu li a {
+                    font-size: 1.2rem;
+                    padding: 3px 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">To Do Hub</a>
+                <button class="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="navbar-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Goals</a></li>
+                    <li><a href="index-3.html" class="active">Services</a></li>
+                    <li><a href="index-4.html">Profile</a></li>
+                    <li><a href="index-5.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <section class="services" id="services">
+                <h2>Our Services</h2>
+                <div class="services-container">
+                    <div class="service-card">
+                        <h3>✅ Habit Organization</h3>
+                        <p>
+                            Create, edit, and view your daily habits in a simple
+                            and intuitive way.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🗓️ Personalized Planning</h3>
+                        <p>
+                            Choose the best days and times to keep your routine
+                            under control.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <h3>📈 Progress Tracking</h3>
+                        <p>
+                            See your weekly progress and stay motivated with
+                            visual goals.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>📧 Contact: <a>mikael.sr.dev@gmail.com</a></p>
+                    <p>
+                        📸 Images by:
+                        <a href="https://www.freepik.com" target="_blank"
+                            >Freepik</a
+                        >
+                        and
+                        <a
+                            href="https://br.freepik.com/autor/pch-vector"
+                            target="_blank"
+                            >Pch.Vector</a
+                        >
+                    </p>
+                    <p>💻 Developed by Mikael Sousa • 2025</p>
+                </div>
+            </footer>
+        </div>
+        <script>
+            const navbarToggle = document.querySelector(".navbar-toggle");
+            const navbarMenu = document.querySelector(".navbar-menu");
+
+            navbarToggle.addEventListener("click", () => {
+                navbarToggle.classList.toggle("active");
+                navbarMenu.classList.toggle("active");
+            });
+        </script>
+    </body>
+</html>

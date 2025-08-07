@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>To Do List</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-image: url("cenario.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 100vh;
+                font-family: "Caprasimo", serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 100px;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+                background: transparent;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(3px);
+                z-index: 999;
+            }
+
+            .navbar-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 2rem;
+                max-width: 1600px;
+            }
+
+            .navbar-logo {
+                font-size: 2rem;
+                color: #ffffff;
+                font-weight: 600;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .navbar-container .navbar-menu {
+                display: flex;
+                text-align: center;
+                gap: 1.5rem;
+                list-style: none;
+            }
+
+            .navbar-container .navbar-menu li a {
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 1.3rem;
+                font-weight: 500;
+                padding: 3px 20px;
+                border-radius: 20px;
+                border: 2px solid transparent;
+                transition: all 0.7s ease;
+            }
+
+            .navbar-toggle {
+                display: none;
+                background: transparent;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                background: #ffffff;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .navbar-container .navbar-menu li a:hover,
+            .navbar-container .navbar-menu li a.active {
+                color: #0f191f;
+                background: rgba(0, 0, 0, 0.2);
+                border: 2px solid #ffffff;
+            }
+
+            .container {
+                font-family: "Caprasimo", serif;
+                background-color: rgba(0, 0, 0, 0.2);
+                border: 1px solid white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                width: 50%;
+                min-height: 400px;
+                padding: 15px;
+                border-radius: 15px;
+                gap: 25px;
+                box-shadow: 0px 10px 40px -12px;
+                overflow-wrap: break-word;
+                overflow-y: auto;
+                max-height: calc(100vh - 60px);
+                margin: 0 auto;
+            }
+
+            h1 {
+                color: white;
+                font-size: 28px;
+            }
+
+            .number-tasks {
+                display: flex;
+                background-color: rgba(0, 0, 0, 0.2);
+                width: 100%;
+                max-width: 500px;
+                padding: 25px;
+                border-radius: 25px;
+                justify-content: space-around;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            h3 {
+                color: white;
+            }
+
+            .div-numbers {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 20px 10px;
+                border-radius: 30px;
+            }
+
+            .insertion {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                gap: 10px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .input-tasks {
+                flex: 1;
+                padding: 15px;
+                background: white;
+                border-radius: 25px;
+                border: none;
+                outline: none;
+                box-shadow: 0px 10px 40px -12px;
+                font-family: "Caprasimo", serif;
+            }
+
+            .add-tasks {
+                padding: 20px 10px;
+                width: 15%;
+                max-width: 100px;
+                min-width: 50px;
+                border-radius: 70px;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0px 10px 40px -12px;
+                font-size: 18px;
+            }
+
+            .add-tasks:hover,
+            .add-tasks:focus {
+                background: rgba(0, 0, 0, 0.8);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            }
+
+            .container-scroll {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .scroll-container {
+                overflow-x: auto;
+                overflow-y: hidden;
+                width: 100%;
+                padding: 10px 5%;
+                min-height: 70px;
+                box-sizing: border-box;
+            }
+
+            .div-shifts {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: 100%;
+                gap: 25px;
+                width: 100%;
+                max-width: 150px;
+            }
+
+            .shift-button {
+                padding: 15px 20px;
+                width: 100%;
+                border-radius: 10px;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                border: 1px solid white;
+                cursor: pointer;
+                font-size: 18px;
+                font-family: "Caprasimo", serif;
+                white-space: nowrap;
+                transition: 0.3s;
+                display: inline-block;
+            }
+
+            .shift-button:hover {
+                background-color: rgba(0, 0, 0, 1);
+                border: 2px solid white;
+                font-size: 18px;
+                border-color: white;
+            }
+
+            input[type="radio"]:checked + label.shift-button {
+                background-color: rgba(0, 0, 0, 1);
+                border: 2px solid white;
+                font-size: 18px;
+                border-color: white;
+            }
+
+            .element1-img {
+                display: flex;
+                width: 20%;
+                max-width: 200px;
+            }
+
+            .ul-tasks {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 0;
+                list-style: none;
+            }
+
+            .element-li {
+                width: 100%;
+                text-align: center;
+                padding: 20px;
+                background: rgba(230, 240, 255, 0.8);
+                border-radius: 25px;
+                box-shadow: 0px 10px 40px -12px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .element-li-concluide {
+                background: rgba(150, 150, 150, 0.6) !important;
+            }
+
+            .message {
+                color: white;
+            }
+
+            .container-li {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .span-li {
+                flex: 1;
+                text-align: center;
+                font-size: 1.2em;
+                word-break: break-word;
+            }
+
+            .concluide-button {
+                width: 40px;
+                height: 40px;
+                padding: 5px;
+                border-radius: 50px;
+                background: none;
+                color: white;
+                border: black solid 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0px 10px 40px -12px;
+            }
+
+            .edite-button {
+                width: 40px;
+                height: 40px;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: black;
+                background: none;
+                font-family: "Caprasimo", serif;
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+
+            .img-check {
+                width: 85%;
+            }
+
+            .number-tasks-completeds {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+
+            .options-button {
+                background: #888;
+            }
+
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+
+            .modal-content {
+                background: rgba(230, 240, 255, 0.8);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0px 0px 10px white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .modal-text {
+                font-size: 20px;
+                color: black;
+            }
+
+            .option-button {
+                width: 80%;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+                font-family: "Caprasimo", serif;
+            }
+
+            .delete {
+                background-color: #b22222;
+                color: white;
+            }
+
+            .rest {
+                background-color: #4a90e2;
+                color: white;
+            }
+
+            .cancel {
+                background-color: #9e9e9e;
+                color: white;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            @media (max-width: 1056px) {
+                .navbar {
+                    backdrop-filter: none;
+                }
+                .navbar-container .navbar-menu {
+                    display: none;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1.7rem !important;
+                    position: absolute;
+                    height: 100vh;
+                    width: 250px;
+                    top: 0;
+                    right: 0;
+                    padding: 5rem 1.5rem;
+                    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(3px);
+                }
+
+                .navbar-toggle {
+                    display: block;
+                    z-index: 999;
+                }
+
+                .navbar-container .navbar-menu.active {
+                    display: flex;
+                }
+
+                .navbar-toggle.active .bar:nth-child(2) {
+                    opacity: 0;
+                }
+
+                .navbar-toggle.active .bar:nth-child(1) {
+                    transform: translateY(8px) rotate(45deg);
+                }
+
+                .navbar-toggle.active .bar:nth-child(3) {
+                    transform: translateY(-8px) rotate(-45deg);
+                }
+
+                .container {
+                    width: 80%;
+                }
+            }
+
+            @media (max-width: 580px) {
+                .navbar-container {
+                    padding: 0.1rem;
+                }
+
+                .navbar-logo {
+                    font-size: 1.7rem;
+                }
+
+                .navbar-container .navbar-menu li a {
+                    font-size: 1.2rem;
+                    padding: 3px 15px;
+                }
+
+                .container {
+                    width: 100%;
+                }
+
+                .shift-button {
+                    width: 100%;
+                    max-width: 120px;
+                }
+
+                .msg-number-tasks {
+                    display: none;
+                }
+
+                .concluide-button,
+                .edite-button {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 12px;
+                }
+            }
+
+            @media (min-width: 1440px) {
+                .container-scroll {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                }
+
+                .scroll-container {
+                    display: flex;
+                }
+
+                .div-shifts {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 25px;
+                    width: 100%;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                    padding: 20px 0;
+                }
+
+                .shift-button {
+                    padding: 15px 20px;
+                    width: 300px;
+                    border-radius: 10px;
+                    background: rgba(0, 0, 0, 0.6);
+                    color: white;
+                    border: 1px solid white;
+                    cursor: pointer;
+                    font-size: 18px;
+                    font-family: "Caprasimo", serif;
+                    white-space: nowrap;
+                    transition: 0.3s;
+                    display: inline-block;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">To Do Hub</a>
+                <button class="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="navbar-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index-2.html">Goals</a></li>
+                    <li><a href="index-3.html">Service</a></li>
+                    <li><a href="index-4.html">profile</a></li>
+                    <li><a href="index-5.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="insertion">
+                <div class="number-tasks">
+                    <h3 class="msg-number-tasks">Create a habit</h3>
+                    <div class="div-numbers">
+                        <p class="numbers">0 / 0</p>
+                    </div>
+                </div>
+                <button
+                    class="add-tasks"
+                    onclick="location.href = 'index-1-1.html'"
+                >
+                    +
+                </button>
+            </div>
+            <div class="container-scroll">
+                <div class="scroll-container">
+                    <div class="div-shifts">
+                        <input
+                            type="radio"
+                            id="anytime"
+                            class="shift"
+                            name="shift"
+                            onclick="checkShift('anytime')"
+                            hidden
+                        />
+                        <label class="shift-button" for="anytime">All</label>
+                        <input
+                            type="radio"
+                            id="morning"
+                            class="shift"
+                            name="shift"
+                            onclick="checkShift('morning')"
+                            hidden
+                        />
+                        <label class="shift-button" for="morning"
+                            >Morning</label
+                        >
+                        <input
+                            type="radio"
+                            id="afternoon"
+                            class="shift"
+                            name="shift"
+                            onclick="checkShift('afternoon')"
+                            hidden
+                        />
+                        <label class="shift-button" for="afternoon"
+                            >Afternoon</label
+                        >
+                        <input
+                            type="radio"
+                            id="evening"
+                            class="shift"
+                            name="shift"
+                            onclick="checkShift('evening')"
+                            hidden
+                        />
+                        <label class="shift-button" for="evening"
+                            >Evening</label
+                        >
+                    </div>
+                </div>
+            </div>
+            <img class="element1-img" src="element1.png" />
+            <ul class="ul-tasks"></ul>
+            <h2 class="message"></h2>
+        </div>
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal-content">
+                <p class="modal-text">Choose an action</p>
+                <button class="option-button delete">Delete</button>
+                <button class="option-button rest">Day off</button>
+                <button class="option-button cancel">Cancel</button>
+            </div>
+        </div>
+        <script>
+            let arrayTasks = [];
+            let tasksConcluides = 0;
+            let imgIcon = "";
+            const divNumbers = document.querySelector(".div-numbers");
+            const msgNumberTasks = document.querySelector(".msg-number-tasks");
+            const element1Img = document.querySelector(".element1-img");
+            const numberTasks = document.querySelector(".number-tasks");
+            const ulTasks = document.querySelector(".ul-tasks");
+            const message = document.querySelector(".message");
+
+            function saveToLocalStorage() {
+                localStorage.setItem("tasks", JSON.stringify(arrayTasks));
+                localStorage.setItem("tasksConcluides", tasksConcluides);
+            }
+
+            function loadFromLocalStorage() {
+                const storedTasks = localStorage.getItem("tasks");
+                const storedConcluides =
+                    localStorage.getItem("tasksConcluides");
+
+                if (storedTasks) {
+                    arrayTasks = JSON.parse(storedTasks);
+                    tasksConcluides = Number(storedConcluides) || 0;
+                    updateStatus();
+                }
+            }
+
+            function updateStatus() {
+                const total = arrayTasks.length;
+                divNumbers.innerHTML = tasksConcluides + " / " + total;
+
+                if (total === 0) {
+                    msgNumberTasks.innerHTML = "Create a habit";
+                    element1Img.style.display = "flex";
+                    numberTasks.classList.remove("number-tasks-completeds");
+                } else if (tasksConcluides === total) {
+                    msgNumberTasks.innerHTML = "Tasks completed";
+                    element1Img.style.display = "none";
+                    numberTasks.classList.add("number-tasks-completeds");
+                } else {
+                    msgNumberTasks.innerHTML = "Keep it up";
+                    element1Img.style.display = "none";
+                    numberTasks.classList.remove("number-tasks-completeds");
+                }
+            }
+
+            const hourNow = new Date();
+            const hour = hourNow.getHours();
+            let hourShift = "anytime";
+
+            if (hour >= 6 && hour < 12) {
+                hourShift = "morning";
+                document.getElementById("morning").checked = true;
+            } else if (hour >= 12 && hour < 18) {
+                hourShift = "afternoon";
+                document.getElementById("afternoon").checked = true;
+            } else if (hour >= 18 || hour < 6) {
+                hourShift = "evening";
+                document.getElementById("evening").checked = true;
+            }
+
+            function checkShift(shift) {
+                ulTasks.innerHTML = "";
+
+                document
+                    .querySelectorAll('input[name="shift"]')
+                    .forEach(input => (input.checked = false));
+
+                const radio = document.getElementById(shift);
+                if (radio) {
+                    radio.checked = true;
+                }
+
+                let filteredTasks = [];
+
+                if (shift === "anytime") {
+                    filteredTasks = arrayTasks.filter(
+                        task => task && !task.hidden
+                    );
+                } else {
+                    filteredTasks = arrayTasks.filter(
+                        task =>
+                            task &&
+                            (task.shift === shift ||
+                                task.shift === "anytime") &&
+                            !task.hidden
+                    );
+                }
+
+                if (filteredTasks.length === 0) {
+                    element1Img.style.display = "flex";
+                    message.innerHTML = "Without habits";
+                } else {
+                    element1Img.style.display = "none";
+                    message.innerHTML = "";
+                }
+
+                localStorage.removeItem("shift");
+
+                filteredTasks.forEach((task, i) => {
+                    const create = tag => document.createElement(tag);
+
+                    const elementLi = create("li");
+                    const containerLi = create("div");
+                    const buttonConcluide = create("button");
+                    const textTask = create("span");
+                    const buttonOptions = create("button");
+
+                    textTask.innerHTML = task.text;
+
+                    if (task.done) {
+                        const imgCheck = document.createElement("img");
+                        imgCheck.src = task.icon || "v-icon.png";
+                        imgCheck.className = "img-check";
+                        buttonConcluide.appendChild(imgCheck);
+                        elementLi.classList.add("element-li-concluide");
+                    }
+
+                    buttonOptions.innerHTML = "...";
+
+                    buttonOptions.onclick = () => {
+                        const modal = document.getElementById("modal-overlay");
+                        const deleteBtn = modal.querySelector(".delete");
+                        const restBtn = modal.querySelector(".rest");
+                        const cancelBtn = modal.querySelector(".cancel");
+                        modal.classList.remove("hidden");
+
+                        deleteBtn.onclick = () => {
+                            const shift =
+                                document.querySelector(
+                                    'input[name="shift"]:checked'
+                                )?.id || "anytime";
+                            if (task.done) {
+                                tasksConcluides--;
+                            }
+                            arrayTasks.splice(i, 1);
+                            saveToLocalStorage();
+                            updateStatus();
+                            checkShift(shift || "shift");
+                            modal.classList.add("hidden");
+                        };
+
+                        restBtn.onclick = () => {
+                            const shift =
+                                document.querySelector(
+                                    'input[name="shift"]:checked'
+                                )?.id || "anytime";
+                            if (!arrayTasks[i] || arrayTasks[i].done) return;
+
+                            const item = arrayTasks.splice(i, 1)[0];
+                            item.done = true;
+                            item.icon = "z-icon.png";
+                            item.timesDone = (item.timesDone || 0) + 1;
+
+                            tasksConcluides++;
+                            arrayTasks.push(item);
+
+                            saveToLocalStorage();
+                            updateStatus();
+                            checkShift(shift || "shift");
+                            modal.classList.add("hidden");
+                        };
+
+                        cancelBtn.onclick = () => {
+                            modal.classList.add("hidden");
+                        };
+                    };
+
+                    elementLi.classList.add("element-li");
+                    textTask.className = "span-li";
+                    containerLi.className = "container-li";
+                    buttonConcluide.className = "concluide-button";
+                    buttonOptions.className = "edite-button";
+
+                    elementLi.appendChild(containerLi);
+                    containerLi.append(
+                        buttonConcluide,
+                        textTask,
+                        buttonOptions
+                    );
+                    ulTasks.appendChild(elementLi);
+
+                    buttonConcluide.onclick = () =>
+                        concluideTask(arrayTasks.indexOf(task));
+                });
+            }
+
+            function restartTasksWeek() {
+                let today = new Date();
+                let dayWeek = today.getDay();
+                let todayString = today.toDateString();
+                let lastWeekReset = localStorage.getItem("weekReset");
+
+                if (dayWeek === 0 && lastWeekReset !== todayString) {
+                    arrayTasks.forEach(task => {
+                        task.done = false;
+                        task.icon = "";
+                        task.hidden = false;
+                        task.timesDone = 0;
+                    });
+
+                    localStorage.setItem("weekReset", todayString);
+                    saveToLocalStorage();
+                }
+
+                arrayTasks.forEach(task => {
+                    if (task.timesDone >= task.daysPerWeek) {
+                        task.hidden = true;
+                    }
+                });
+
+                saveToLocalStorage();
+            }
+
+            function restartTasks() {
+                const now = new Date();
+                const hour = now.getHours();
+                const today = now.toDateString();
+                const lastReset = localStorage.getItem("lastReset");
+
+                if (hour >= 6 && lastReset !== today) {
+                    arrayTasks.forEach(task => {
+                        if (task.done) {
+                            task.done = false;
+                            task.icon = "";
+                        }
+                    });
+
+                    tasksConcluides = 0;
+                    saveToLocalStorage();
+                    localStorage.setItem("lastReset", today);
+                }
+            }
+
+            function concluideTask(i) {
+                const shift =
+                    document.querySelector('input[name="shift"]:checked')?.id ||
+                    "anytime";
+                if (!arrayTasks[i] || arrayTasks[i].done) return;
+
+                arrayTasks[i].done = true;
+                arrayTasks[i].icon = "v-icon.png";
+                arrayTasks[i].timesDone++;
+
+                tasksConcluides++;
+
+                const item = arrayTasks.splice(i, 1)[0];
+                arrayTasks.push(item);
+
+                saveToLocalStorage();
+                updateStatus();
+                checkShift(shift);
+            }
+
+            window.onload = () => {
+                loadFromLocalStorage();
+
+                const habitName = localStorage.getItem("habitName");
+                const shift = localStorage.getItem("shift");
+                const daysPerWeek = localStorage.getItem("daysPerWeek");
+
+                restartTasksWeek();
+                restartTasks();
+
+                if (habitName && shift) {
+                    const newTask = {
+                        done: false,
+                        text: habitName,
+                        shift: shift,
+                        timesDone: 0,
+                        hidden: false,
+                        daysPerWeek: daysPerWeek
+                    };
+
+                    arrayTasks.unshift(newTask);
+                    saveToLocalStorage();
+
+                    localStorage.removeItem("habitName");
+
+                    updateStatus();
+                    checkShift(shift);
+                    return;
+                }
+
+                updateStatus();
+                checkShift(hourShift);
+            };
+
+            const navbarToggle = document.querySelector(".navbar-toggle");
+            const navbarMenu = document.querySelector(".navbar-menu");
+
+            navbarToggle.addEventListener("click", () => {
+                navbarToggle.classList.toggle("active");
+                navbarMenu.classList.toggle("active");
+            });
+        </script>
+    </body>
+</html>
