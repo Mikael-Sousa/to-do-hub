@@ -52,6 +52,7 @@ body {
   padding: 20px;
   border-radius: 20px;
   width: 35%;
+  min
   max-width: 200px;
   background-color: #fff;
   transition: transform 0.3s ease;
