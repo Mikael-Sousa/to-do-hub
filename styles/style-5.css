@@ -1,147 +1,147 @@
-            body {
-                background-image: url("../images/cenario.jpg");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                width: 100vw;
-                min-height: 100vh;
-                font-family: "Caprasimo", serif;
-                padding-top: 70px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+body {
+  background-image: url("../images/cenario.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "Caprasimo", serif;
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-            .container {
-                width: 100vw;
-                min-height: 100vh;
-                display: flex;
-                background-color: rgba(0, 0, 0, 0.2);
-                padding: 15px;
-                align-items: center;
-                justify-content: center;
-            }
-            .container-left {
-                width: 100vw;
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .container-right {
-                width: 100vw;
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+}
+.container-left {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-right {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-            .card-left {
-                font-family: "Caprasimo", serif;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                width: 100%;
-                border-radius: 15px;
-                gap: 25px;
-            }
+.card-left {
+  font-family: "Caprasimo", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 15px;
+  gap: 25px;
+}
 
-            .card-right {
-                font-family: "Caprasimo", serif;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                width: 100%;
-                border-radius: 15px;
-                gap: 25px;
-            }
+.card-right {
+  font-family: "Caprasimo", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 15px;
+  gap: 25px;
+}
 
-            h1,
-            p,
-            li,
-            h2 {
-                color: white;
-            }
+h1,
+p,
+li,
+h2 {
+  color: white;
+}
 
-            h1 {
-                font-size: 2.5rem;
-            }
+h1 {
+  font-size: 2.5rem;
+}
 
-            h2 {
-                font-size: 1.8rem;
-            }
+h2 {
+  font-size: 1.8rem;
+}
 
-            p {
-                font-size: 1.2rem;
-            }
+p {
+  font-size: 1.2rem;
+}
 
-            a {
-                font-size: 1.2rem;
-            }
+a {
+  font-size: 1.2rem;
+}
 
-            .div2 p {
-                margin-left: 10px;
-                display: inline-block;
-                font-size: 1.2rem;
-            }
-            .div2 {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .email-img {
-                width: 10%;
-                max-width: 140px;
-            }
-            .skills-img {
-                width: 40%;
-                max-width: 300px;
-            }
-            .div-1 {
-                display: flex;
-            }
-            .github-png {
-                width: 30%;
-                max-width: 500px;
-                background-color: white;
-                border-radius: 10px;
-                cursor: pointer;
-            }
-            
-            @media (max-width: 1056px) {
-                .container {
-                    flex-direction: column;
-                    padding: 20px;
-                }
+.div2 p {
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+.div2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.email-img {
+  width: 10%;
+  max-width: 140px;
+}
+.skills-img {
+  width: 40%;
+  max-width: 300px;
+}
+.div-1 {
+  display: flex;
+}
+.github-png {
+  width: 30%;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-                .container-left,
-                .container-right {
-                    width: 100%;
-                    min-height: auto;
-                    padding: 20px 10px;
-                }
+@media (max-width: 1056px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
 
-                .card-left,
-                .card-right {
-                    width: 100%;
-                    gap: 20px;
-                }
+  .container-left,
+  .container-right {
+    width: 100%;
+    min-height: auto;
+    padding: 20px 10px;
+  }
 
-                h1 {
-                    font-size: 2rem;
-                }
+  .card-left,
+  .card-right {
+    width: 100%;
+    gap: 20px;
+  }
 
-                h2 {
-                    font-size: 1.5rem;
-                }
+  h1 {
+    font-size: 2rem;
+  }
 
-                p {
-                    font-size: 1rem;
-                }
+  h2 {
+    font-size: 1.5rem;
+  }
 
-                .div2 p {
-                    font-size: 1rem;
-                }
-            }
+  p {
+    font-size: 1rem;
+  }
+
+  .div2 p {
+    font-size: 1rem;
+  }
+}
