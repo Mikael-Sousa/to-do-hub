@@ -1,103 +1,103 @@
-            body {
-                background-image: url("../images/cenario.jpg");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                width: 100vw;
-                min-height: 100vh;
-                font-family: "Caprasimo", serif;
-                padding-top: 60px;
-                display: flex;
-            }
+body {
+  background-image: url("../images/cenario.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "Caprasimo", serif;
+  padding-top: 60px;
+  display: flex;
+}
 
-            .container {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 40px 20px;
-            }
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
 
-            .services {
-                max-width: 1500px;
-                width: 80%;
-                padding: 60px 20px 80px;
-                background-color: rgba(0, 0, 0, 0.2);
-                text-align: center;
-                font-family: "Caprasimo", sans-serif;
-                border-radius: 15px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 15px;
-                box-shadow: 0px 10px 40px -12px;
-            }
+.services {
+  max-width: 1500px;
+  width: 80%;
+  padding: 60px 20px 80px;
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-family: "Caprasimo", sans-serif;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0px 10px 40px -12px;
+}
 
-            .services h2 {
-                font-size: 2.5rem;
-                margin-bottom: 40px;
-                color: #fff;
-            }
+.services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #fff;
+}
 
-            .services-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 30px;
-            }
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
 
-            .service-card {
-                padding: 20px;
-                border-radius: 20px;
-                width: 40%;
-                max-width: 200px;
-                background-color: #fff;
-                transition: transform 0.3s ease;
-            }
+.service-card {
+  padding: 20px;
+  border-radius: 20px;
+  width: 40%;
+  max-width: 200px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
 
-            .service-card:hover {
-                transform: translateY(-10px);
-            }
+.service-card:hover {
+  transform: translateY(-10px);
+}
 
-            .service-card h3 {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-                color: rgba(30, 30, 30, 1);
-                overflow-wrap: anywhere;
-            }
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: rgba(30, 30, 30, 1);
+  overflow-wrap: anywhere;
+}
 
-            .service-card p {
-                font-size: 2.5rem;
-                line-height: 1.5;
-                color: rgba(30, 30, 30, 1);
-            }
-            
-            #card-2 {
-              background-color: rgba(30, 30, 30, 1);
-            }
-            
-             #card-2 h3 {
-              color: #fff
-            }
-            
-             #card-2 p {
-              color: #fff
-            }
+.service-card p {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: rgba(30, 30, 30, 1);
+}
 
-            .chart-container h2 {
-                font-size: 2.5rem;
-                margin-top: 40px;
-                color: #fff;
-            }
+#card-2 {
+  background-color: rgba(30, 30, 30, 1);
+}
 
-            .chart-container {
-                width: 80%;
-                max-width: 600px;
-                margin: 0 auto;
-            }
+#card-2 h3 {
+  color: #fff
+}
 
-            .chart-container canvas {
-                height: 300px;
-            }
+#card-2 p {
+  color: #fff
+}
+
+.chart-container h2 {
+  font-size: 2.5rem;
+  margin-top: 40px;
+  color: #fff;
+}
+
+.chart-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chart-container canvas {
+  height: 300px;
+}
