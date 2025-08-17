@@ -43,7 +43,6 @@ body {
 
 .services-container {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
@@ -52,9 +51,9 @@ body {
 .service-card {
   padding: 20px;
   border-radius: 20px;
-  width: 35%;
+  width: 40%;
   min-width: 70px;
-  max-width: 250px;
+  max-width: 200px;
   background-color: #fff;
   transition: transform 0.3s ease;
 }
@@ -64,11 +63,10 @@ body {
 }
 
 .service-card h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 10px;
   color: rgba(30, 30, 30, 1);
   overflow-wrap: anywhere;
-  letter-spacing: 2px;
 }
 
 .service-card p {
