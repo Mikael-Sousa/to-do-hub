@@ -14,7 +14,7 @@ const card1 = document.querySelector(".p1");
                 );
 
                 let percent = totalHabits ? Math.round((totalTasksConcluides / totalHabits) * 100) : 0;
-card2.innerHTML = percent + "%";
+                card2.innerHTML = percent + "%";
 
                 let perfectDays = Number(localStorage.getItem("perfectDays"));
                 card3.innerHTML = perfectDays;
