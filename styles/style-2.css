@@ -67,6 +67,7 @@ body {
   margin-bottom: 10px;
   color: rgba(30, 30, 30, 1);
   overflow-wrap: anywhere;
+  letter-spacing: 5px;
 }
 
 .service-card p {
